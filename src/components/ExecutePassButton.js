@@ -7,6 +7,7 @@ export default function ExecutePassButton() {
   return (
     <div className="execute-button" onClick={() => passCard(selectedCard)}>
       Pass <Card card={selectedCard} setFrom={setFrom} setSelectedCard={setSelectedCard} /> from{' '}
+      {/* ASK ABOUT THIS TOMORROW */}
       {from} to {to}
     </div>
   );
