@@ -8,12 +8,18 @@ const GameProvider = ({ children }) => {
   const [from, setFrom] = useState('deck');
   const [to, setTo] = useState(1);
   const [deck, setDeck] = useState(initialCards);
+  const [playerOneHand, setPlayerOneHand] = useState([]);
+  const [playerTwoHand, setPlayerTwoHand] = useState([]);
+  const [playerThreeHand, setPlayerThreeHand] = useState([]);
 
   function findCardIndex(value, suit, cards) {
     return cards.findIndex((card) => card.value === value && card.suit === suit);
   }
 
   function passCard(card) {
+    const playerHands = [playerOneHand, playerTwoHand, playerThreeHand];
+    const playerHandSetFunctions = [setPlayerOneHand, setPlayerTwoHand, setPlayerThreeHand];
+
     const fromHand = playerHands[from - 1] || deck;
     const toHand = playerHands[to - 1] || deck;
 
@@ -41,6 +47,14 @@ const GameProvider = ({ children }) => {
         to,
         setTo,
         deck,
+        setDeck,
+        setPlayerOneHand,
+        playerOneHand,
+        setPlayerTwoHand,
+        playerTwoHand,
+        setPlayerThreeHand,
+        playerThreeHand,
+        passCard,
       }}
     >
       {children}

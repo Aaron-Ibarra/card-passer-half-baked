@@ -1,21 +1,13 @@
 import './App.css';
-import initialCards from './cards-data';
 import Player from './components/Player';
 import CardList from './components/CardList';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import ExecutePassButton from './components/ExecutePassButton';
-import { GameContext } from './context/GameContext.jsx';
+import { GameContext } from './context/GameContext.js';
 
 function App() {
-  const { selectedCard, deck } = useContext(GameContext);
-  const [playerOneHand, setPlayerOneHand] = useState([]);
-  const [playerTwoHand, setPlayerTwoHand] = useState([]);
-  const [playerThreeHand, setPlayerThreeHand] = useState([]);
-
-  function passCard(card) {
-    const playerHands = [playerOneHand, playerTwoHand, playerThreeHand];
-    const playerHandSetFunctions = [setPlayerOneHand, setPlayerTwoHand, setPlayerThreeHand];
-  }
+  const { selectedCard, deck, playerOneHand, playerTwoHand, playerThreeHand } =
+    useContext(GameContext);
 
   return (
     <div className="App">
@@ -26,7 +18,7 @@ function App() {
         <Player player={3} hand={playerThreeHand} />
         <CardList cards={deck} player={'deck'} />
       </section>
-      <section>{selectedCard && <ExecutePassButton passCard={passCard} />}</section>
+      <section>{selectedCard && <ExecutePassButton />}</section>
     </div>
   );
 }
