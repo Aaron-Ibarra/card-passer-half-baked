@@ -7,16 +7,10 @@ import ExecutePassButton from './components/ExecutePassButton';
 import { GameContext } from './context/GameContext.jsx';
 
 function App() {
-  const { selectedCard } = useContext(GameContext);
-
-  const [deck, setDeck] = useState(initialCards);
+  const { selectedCard, deck } = useContext(GameContext);
   const [playerOneHand, setPlayerOneHand] = useState([]);
   const [playerTwoHand, setPlayerTwoHand] = useState([]);
   const [playerThreeHand, setPlayerThreeHand] = useState([]);
-
-  function findCardIndex(value, suit, cards) {
-    return cards.findIndex((card) => card.value === value && card.suit === suit);
-  }
 
   function passCard(card) {
     const playerHands = [playerOneHand, playerTwoHand, playerThreeHand];
@@ -32,11 +26,7 @@ function App() {
         <Player player={3} hand={playerThreeHand} />
         <CardList cards={deck} player={'deck'} />
       </section>
-      <section>
-        {selectedCard && (
-          <ExecutePassButton passCard={passCard} />
-        )}
-      </section>
+      <section>{selectedCard && <ExecutePassButton passCard={passCard} />}</section>
     </div>
   );
 }

@@ -7,6 +7,11 @@ const GameProvider = ({ children }) => {
   const [selectedCard, setSelectedCard] = useState();
   const [from, setFrom] = useState('deck');
   const [to, setTo] = useState(1);
+  const [deck, setDeck] = useState(initialCards);
+
+  function findCardIndex(value, suit, cards) {
+    return cards.findIndex((card) => card.value === value && card.suit === suit);
+  }
 
   function passCard(card) {
     const fromHand = playerHands[from - 1] || deck;
@@ -35,6 +40,7 @@ const GameProvider = ({ children }) => {
         setFrom,
         to,
         setTo,
+        deck,
       }}
     >
       {children}
